@@ -67,6 +67,8 @@
 
 % ----------------------------------- Текст ---------------------------------- %
 \linespread{1.0}
+% Запас растяжимости строк: длинные формулы в тексте не выходят за поля
+\setlength{\emergencystretch}{1.5em}
 
 % ---------------------------------- Формула --------------------------------- %
 \AtBeginDocument{
@@ -119,7 +121,7 @@
 % -------------------------------- Колонтитулы ------------------------------- %
 
 \def\labauthors{...}%                   значение по умолчанию
-\fancyhead[RO,LE]{\labauthors}
+%\fancyhead[RO,LE]{\small\labauthors}
 \fancyhead[LO,RE]{\shortlabtheme}
 
 
@@ -128,8 +130,11 @@
 \renewcommand{\section}{\@startsection{section}{1}{\z@}
     {-2.5ex \@plus -0.8ex \@minus -.2ex}
     {1.8ex \@plus.2ex}
-    {\Large\bfseries\centering\MakeUppercase}}
+    {\Large\bfseries\centering}}
 \renewcommand{\thesection}{\Roman{section}.}
+
+% Ширина номеров разделов в оглавлении (римские номера шире стандартной)
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.8em}}
 
 \renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}
     {-2.5ex \@plus -0.8ex \@minus -.2ex}
@@ -199,6 +204,9 @@
     belowskip=2pt,              % Отступ под подписью
     position=bottom,            % Отступы для подписи, расположенной после изображения
 }
+
+% Кириллические метки подрисунков: (а), (б), (в), ...
+\renewcommand{\thesubfigure}{\asbuk{subfigure}}
 
 \graphicspath{{image/}{graph/}}
 
